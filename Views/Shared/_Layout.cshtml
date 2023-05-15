@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NULLAM - @ViewData["Title"]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/helpers.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/font/font-awesome-4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/lib/toastr/build/toastr.min.css" />
+</head>
+<body>
+    <header>
+        <a href="/"><img src="~/img/logo.svg" class="logo" /></a>
+        <nav class="header-nav">
+            <ul>
+                <li class="@(ViewBag.MenuSelection == "home" ? "selected" : "")"><a asp-area="" asp-controller="Home" asp-action="Index">Avaleht</a></li>
+                <li class="@(ViewBag.MenuSelection == "add-event" ? "selected" : "")"><a asp-area="" asp-controller="Event" asp-action="Index">Ürituse lisamine</a></li>
+            </ul>
+        </nav>
+        <img src="~/img/symbol.svg" class="symbol"/>
+    </header>
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div>
+            <h1>Curabitur</h1>
+            Emauris<br/>
+            Kfringilla<br/>
+            Oin magna sem<br/>
+            Kelementum<br/>
+        </div>
+        <div>
+            <h1>Fusce</h1>
+            Econsectetur<br />
+            Ksollicitudin<br />
+            Omvulputate<br />
+            Nunc fringilla tellu<br />
+        </div>
+        <div>
+            <h1>Kontakt</h1>
+            <b>Peakontor: Tallinnas</b><br />
+            Väike-Ameerika 1, 11415 Tallinn<br />
+            Telefon: 605 4450<br />
+            Faks: 605 3186<br />
+        </div>
+        <div>
+            <h1 class="hide-sm">&nbsp;</h1>
+            <span class="sm-mt10 dis-ib">
+                <b>Harjukontor: Võrus</b><br />
+                Oja tn 7 (külastusaadress)<br />
+                Telefon: 605 3330<br />
+                Faks: 605 3155<br />
+            </span>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr/build/toastr.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

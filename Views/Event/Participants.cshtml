@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Osavõtjad";
+}
+<div class="add-event-container">
+    <div class="add-event-header">
+        <div class="add-event">Osavõtjad</div>
+        <div class="add-event-img"></div>
+    </div>
+    <div class="add-event-body" id="event"></div>
+</div>
+
+<script type="text/javascript">
+    let event = @Html.Raw(@ViewBag.Event);
+</script>
+<script type="text/javascript" src="~/js/event.js"></script>

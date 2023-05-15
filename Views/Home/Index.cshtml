@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Avaleht";
+}
+<div class="hero-img">
+    <div class="hero">
+        <div>
+            <span>Sed nec elit vestibulum, </span>
+            <span class="bold">tincidunt</span>
+            <span>orci et, sagittis ex. Vestibulum rutrum </span>
+            <span class="bold">neque suscipit </span> 
+            <span>ante mattis maximus. Nulla non sapien</span>
+            <span class="bold">viverra, lobortis lorem non,</span>
+            <span>accumsan metus.</span>
+        </div>
+    </div>
+    <div class="image"></div>
+</div>
+
+<div id="events"></div>
+
+<script type="text/javascript">
+    let eventsList = @Html.Raw(@ViewBag.EventsList);
+</script>
+<script type="text/javascript" src="~/js/Home.js"></script>
