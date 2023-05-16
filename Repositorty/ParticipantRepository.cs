@@ -20,15 +20,16 @@ namespace NULLAM_RIK.Repositorty
                         Firstname = "Mihkel",
                         Lastname = "Amman",
                         PersonalCode = "37810014694",
-                        EventId = 2
+                        EventId = 2,
+                        Type = 1
                     },
                     new ParticipantDataModel
                     {
                         Id = 2,
-                        Firstname = "Nullam",
-                        Lastname = "OÜ",
+                        Firstname = "Nullam OÜ",
                         PersonalCode = "70000622",
-                        EventId = 2
+                        EventId = 2,
+                        Type = 2
                     },
                     new ParticipantDataModel
                     {
@@ -36,7 +37,8 @@ namespace NULLAM_RIK.Repositorty
                         Firstname = "Uku",
                         Lastname = "Leele",
                         PersonalCode = "37810014944",
-                        EventId = 2
+                        EventId = 2,
+                        Type = 1
                     }
                 };
 
@@ -79,6 +81,27 @@ namespace NULLAM_RIK.Repositorty
                 context.Participants.Remove(participant);
                 context.SaveChanges();
                 return true;
+            }
+        }
+
+        public bool SaveParticipant(ParticipantDataModel participant)
+        {
+            using (var context = new DatabaseContext())
+            {
+                ParticipantDataModel pdm = context.Participants.First(p => p.Id == participant.Id);
+                context.Entry(pdm).CurrentValues.SetValues(participant);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public ParticipantDataModel GetParticipantById(int id)
+        {
+            using (var context = new DatabaseContext())
+            {
+                ParticipantDataModel pdm = context.Participants.FirstOrDefault (p => p.Id == id);
+                return pdm;
+
             }
         }
     }

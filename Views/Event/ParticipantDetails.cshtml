@@ -2,36 +2,15 @@
     ViewData["Title"] = "Osavõtja info";
 }
 
-<div class="add-event-container">
-    <div class="add-event-header">
-        <div class="add-event">Osavõtja infoe</div>
-        <div class="add-event-img"></div>
+<div class="content">
+    <div class="content-header">
+        <div class="content-title">Osavõtja info</div>
+        <div class="content-img"></div>
     </div>
-    <div class="add-event-body mxw300">
-        <h1>Osavõtja info</h1>
-        <form class="form-main">
-            <div class="form-group">
-                <label>Eesnimi:</label>
-                <input type="text" />
-            </div>
-            <div class="form-group">
-                <label>Perenimi:</label>
-                <input type="text"/>
-            </div>
-            <div class="form-group">
-                <label>Isikukood:</label>
-                <input type="text" />
-            </div>
-            <div class="form-group">
-                <label>Maksmisviis:</label>
-                <select>
-                    <option value="sularaha">sularaha</option>
-                </select>
-            </div>
-            <div class="form-group flex-jcs">
-                <a asp-area="" asp-controller="Event" asp-action="Index" class="btn btn-secondary mr10">Tagasi</a>
-                <button type="button" class="btn btn-main">Salvesta</button>
-            </div>
-        </form>
-    </div>
+    <div class="content-vue" id="participant"></div>
 </div>
+
+<script type="text/javascript">
+    let participant = @Html.Raw(@ViewBag.Participant);
+</script>
+<script type="text/javascript" src="~/js/Participant.js"></script>

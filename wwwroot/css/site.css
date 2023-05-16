@@ -101,7 +101,8 @@ footer {
     flex-flow: row wrap;
     justify-content: space-between;
     padding: 10px 25px 50px 25px;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 footer h1 {
@@ -148,16 +149,12 @@ footer > div {
 .events {
     display: flex;
     flex-flow: row wrap;
-    margin-bottom: 10px;
+    gap: 10px;
 }
 
 .events > div {
     flex: 1;
     background-color: var(--color-fill);
-}
-
-.active-events {
-    margin-right: 10px;
 }
 
 .active-events h1,
@@ -240,12 +237,12 @@ footer > div {
     background-color: #e0e3e6;
 }
 
-input {
+input[type="text"] {
     height: 30px;
     min-width: 180px;
 }
 
-input:focus {
+input[type="text"]:focus {
     outline: 1px solid var(--color-primary);
 }
 
@@ -253,7 +250,8 @@ input:placeholder-shown {
     font-style: italic;
 }
 
-input.error {
+input.error,
+select.error {
     outline: 1px solid red;
 }
 
@@ -272,18 +270,17 @@ select {
     min-width: 180px;
 }
 
-.add-event-container {
+.content {
     background-color: var(--color-fill);
-    height: 100%;
 }
 
-.add-event-header {
+.content-header {
     display: flex;
     margin-top: 10px;
     height: 80px;
 }
 
-.add-event {
+.content-title {
     color: var(--color-fill);
     background-color: var(--color-primary);
     display: flex;
@@ -292,13 +289,13 @@ select {
     padding: 0 25px;
 }
 
-.add-event-img {
+.content-img {
     background-image: url(../img/libled.jpg);
     background-position: center center;
     flex: 1;
 }
 
-.add-event-body {
+.content-vue {
     margin: 0 auto;
     display: flex;
     flex-flow: column wrap;
@@ -322,6 +319,8 @@ select {
 
 .form-group label {
     font-weight: bold;
+    min-width: 100px;
+    margin-right: 10px;
 }
 
 .modal {
@@ -384,29 +383,40 @@ select {
     list-style: none;
     padding-left: 0;
     margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .participants-list ul li {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
     align-items: center;
 }
 
-.participants-list ul li > * {
-    flex-grow: 1;
+.participants-list ul li span:first-child {
+    width: 100%;
+    margin-right: 20px;
 }
 
-    @media only screen and (max-width: 768px) {
-        header {
-        justify-content: space-between;
-    }
+.participants-list ul li span:not(:first-child) {
+    margin-right: 10px;
+}
 
-    .logo {
-        margin-right: 25px;
-    }
+.participants-list ul li a {
+    padding: 10px;
+    margin: 0;
+}
 
-    .header-nav {
-        flex: 1;
-    }
+@media only screen and (max-width: 768px) {
+    header {
+    justify-content: space-between;
+}
+
+.logo {
+    margin-right: 25px;
+}
+
+.header-nav {
+    flex: 1;
+}
 }

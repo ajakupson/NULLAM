@@ -3,6 +3,7 @@ using NULLAM_RIK.DataModels;
 using NULLAM_RIK.DTO;
 using NULLAM_RIK.IRepository;
 using NULLAM_RIK.Repositorty;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 namespace NULLAM_RIK.Controllers
@@ -20,6 +21,7 @@ namespace NULLAM_RIK.Controllers
             _participantRepository = participantRepository;
         }
 
+        [Route("event-add")]
         public IActionResult Index()
         {
             ViewBag.MenuSelection = "add-event";
@@ -31,14 +33,29 @@ namespace NULLAM_RIK.Controllers
         public IActionResult Participants(int id)
         {
             EventDataModel evt = _eventRepository.GetEventWithParticipants(id);
-            ViewBag.Event = JsonSerializer.Serialize(evt);
-            return View();
+            EventDTO eventDTO = new EventDTO();
+
+            if (evt != null)
+            {
+                eventDTO = new EventDTO(evt);
+                eventDTO.DateTimeFormatted = evt.DateTime.ToString("dd.MM.yyyy");
+                ViewBag.Event = JsonSerializer.Serialize(eventDTO);
+                return View();
+            }
+
+            return NotFound();
         }
 
         [HttpPost]
         [Route("/event/participants/add")]
         public IActionResult AddParticipant([FromBody] ParticipantDataModel participant)
         {
+            ICollection<ValidationResult> results = null;
+            if (!Helpers.ModelValidation.Validate(participant, out results))
+            {
+                return BadRequest(new { errMsg = "Valed andmed" });
+            }
+
             int id = _participantRepository.AddParticipant(participant);
             return Ok(new { id = id });
         }
@@ -63,13 +80,42 @@ namespace NULLAM_RIK.Controllers
         [Route("/event/add")]
         public IActionResult AddEvent([FromBody] EventDataModel evt)
         {
+            ICollection<ValidationResult> results = null;
+            if (!Helpers.ModelValidation.Validate(evt, out results))
+            {
+                return BadRequest(new { errMsg = "Valed andmed" });
+            }
+
             _eventRepository.AddEvent(evt);
             return Ok();
         }
 
-        public IActionResult ParticipantDetails()
+        [HttpGet]
+        [Route("/event/participants/{id}")]
+        public IActionResult ParticipantDetails(int id)
         {
-            return View();
+            ParticipantDataModel pdm = _participantRepository.GetParticipantById(id);
+            if (pdm != null)
+            {
+                ViewBag.Participant = JsonSerializer.Serialize(pdm);
+                return View();
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        [Route("/event/participants/save")]
+        public IActionResult SaveParticipant([FromBody] ParticipantDataModel participant)
+        {
+            ICollection<ValidationResult> results = null;
+            if (!Helpers.ModelValidation.Validate(participant, out results))
+            {
+                return BadRequest(new { errMsg = "Valed andmed" });
+            }
+
+            _participantRepository.SaveParticipant(participant);
+            return Ok();
         }
     }
 }

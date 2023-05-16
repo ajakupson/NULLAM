@@ -97,8 +97,11 @@ namespace NULLAM_RIK.Repositorty
             using (var context = new DatabaseContext())
             {
                 EventDataModel evt = context.Events.FirstOrDefault(e => e.Id == eventId);
-                var participants = context.Participants.Where(p => p.EventId == eventId).ToList();
-                evt.Participants = participants;
+                if (evt != null)
+                {
+                    var participants = context.Participants.Where(p => p.EventId == eventId).ToList();
+                    evt.Participants = participants;
+                }
 
                 return evt;
             }
@@ -120,6 +123,8 @@ namespace NULLAM_RIK.Repositorty
             {
                 EventDataModel edm = new EventDataModel() { Id = eventId };
                 context.Events.Remove(edm);
+                List<ParticipantDataModel> pts = context.Participants.Where(p => p.EventId == eventId).ToList();
+                context.Participants.RemoveRange(pts);
                 context.SaveChanges();
 
                 return true;

@@ -12,7 +12,7 @@
             }
         },
         mounted() {
-            
+
         },
         methods: {
             confrimRemove: function (evt) {
@@ -60,7 +60,7 @@
                     <span class="d-flex flex-jcc flex-aic"><a :href="'/event/' + event.Id + '/participants'" class="btn mr10">Osavõtjad</a><i class="fa fa-times" aria-hidden="true" @click="confrimRemove(event)"></i></span>
                 </li>
             </ul>
-            <a href="/Event" class="btn">Lisa üritus</a>
+            <a href="/event-add" class="btn">Lisa üritus</a>
         </div>
         <div class="inactive-events">
             <h1>Toimunud üritused</h1>

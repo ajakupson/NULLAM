@@ -6,6 +6,10 @@
     margin-right: 10px;
 }
 
+.mr20 {
+    margin-right: 20px;
+}
+
 .ml0 {
     margin-left: 0 !important;
 }
@@ -27,7 +31,11 @@
 }
 
 .mxw300 {
-    width: 300px;
+    max-width: 300px;
+}
+
+.mnw100 {
+    min-width: 100px;
 }
 
 .d-flex {

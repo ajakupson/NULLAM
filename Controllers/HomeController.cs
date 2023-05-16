@@ -28,19 +28,11 @@ namespace NULLAM_RIK.Controllers
             List<EventDTO> eventsDTOs = new List<EventDTO>();
             eventsList.ForEach(e =>
             {
-               EventDTO dto = new EventDTO();
-                dto.Id = e.Id;
-                dto.Name= e.Name;
+               EventDTO dto = new EventDTO(e);
                 dto.DateTimeFormatted = e.DateTime.ToString("dd.MM.yyyy");
-                dto.IsActive = e.IsActive;
                 eventsDTOs.Add(dto);
             });
             ViewBag.EventsList = JsonSerializer.Serialize(eventsDTOs);
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 

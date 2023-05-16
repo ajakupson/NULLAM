@@ -10,10 +10,12 @@ namespace NULLAM_RIK.DataModels
         public string? Name { get; set; }
         [Required]
         public DateTime DateTime { get; set; }
-        public string? Place { get; set; }
+        [Required]
+        public string Place { get; set; } = string.Empty;
         public string? Description { get; set; }
         public bool IsActive { get; set; } = false;
         public List<ParticipantDataModel>? Participants { get; set; }
+
 
     }
 }

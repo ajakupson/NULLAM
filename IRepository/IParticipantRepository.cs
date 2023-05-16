@@ -7,5 +7,7 @@ namespace NULLAM_RIK.IRepository
         public List<ParticipantDataModel> GetParticipantsByEventId(int eventId);
         public int AddParticipant(ParticipantDataModel participant);
         public bool RemoveParticipant(ParticipantDataModel participant);
+        public bool SaveParticipant(ParticipantDataModel participant);
+        public ParticipantDataModel GetParticipantById(int id);
     }
 }

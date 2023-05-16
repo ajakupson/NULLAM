@@ -49,7 +49,7 @@
                             toastr.success("Üritus edukalt lisatud", "Edu");
                         },
                         error: function (xhr, textStatus, errorThrown) {
-                            console.log(errorThrown);
+                            toastr.error(xhr.responseJSON.errMsg, "Viga");
                         }
                     });
                 }
