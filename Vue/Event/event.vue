@@ -150,7 +150,7 @@
     </div>
 
 
-    <div class="div-centered">
+    <div class="div-centered" v-if="event.IsActive">
         <h1 class="form-title">Osavõtjate lisamine</h1>
         <form class="form-main mxw300">
             <div class="form-group">
